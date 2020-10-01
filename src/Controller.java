@@ -7,7 +7,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 
-class Renovation {
+class Controller {
     private static int width;
     private static int height;
     static Scanning play;
@@ -15,8 +15,8 @@ class Renovation {
     private static Polygon[][] square;
 
     static void init(int width, int height) {
-        Renovation.width = width;
-        Renovation.height = height;
+        Controller.width = width;
+        Controller.height = height;
         zone.getChildren().clear();
         square = new Polygon[height][width];
 
@@ -48,22 +48,22 @@ class Renovation {
     static void update() {
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
-                Hexagon cell = play.getField().getHexagon()[i][j];
-                if (cell.flag()) { square[i][j].setFill(Color.DARKVIOLET);
+                Hexagon hexagon = play.getField().getHexagon()[i][j];
+                if (hexagon.flag()) { square[i][j].setFill(Color.YELLOW);
                 } else { square[i][j].setFill(Color.VIOLET);
                 }
-                if (cell.getVisibility()) { square[i][j].setFill(Color.LIGHTGRAY);
-                    if (cell.getMine()) { square[i][j].setFill(Color.DEEPPINK);
-                    } else if (cell.getMinesCount() != 0) {
+                if (hexagon.getVisibility()) { square[i][j].setFill(Color.LIGHTGRAY);
+                    if (hexagon.getMine()) { square[i][j].setFill(Color.DEEPPINK);
+                    } else if (hexagon.getMinesCount() != 0) {
                         ImagePattern number = new ImagePattern(new Image(
-                                "Image/number_" + cell.getMinesCount() + ".png"));
+                                "Image/number_" + hexagon.getMinesCount() + ".png"));
                         square[i][j].setFill(number);
                     }
                 }
             }
         }
-        if (play.gameOver()) Renovation.output("Game over(((");
-        if (play.win()) Renovation.output("Winning!");
+        if (play.gameOver()) Controller.output("Game over(((");
+        if (play.win()) Controller.output("Winning!");
     }
     private static Polygon draw(int x, int y) {
         int r = 15;

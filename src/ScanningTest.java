@@ -25,7 +25,7 @@ class ScanningTest{
     void clickHexagon() {
     }
 
-    @Test
+    /*@Test
     void testChangeFlag() {
         Scanning s = new Scanning(5,5,5);
 
@@ -34,9 +34,9 @@ class ScanningTest{
             Field f = s.getField();
             Hexagon h = f.getHexagon()[2][2];
             return h.flag();
-        });
+        });*/
 
-    }
+    //}
 
     @Test
     void restart() {

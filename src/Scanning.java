@@ -6,7 +6,7 @@ class Scanning {
     private int height;
     private int minesCount;
 
-    Scanning(int width, int height, int minesCount) {
+    public Scanning(int width, int height, int minesCount) {
         setGameParams(width, height, minesCount);
         field = new Field(width, height, minesCount);
     }
@@ -27,20 +27,20 @@ class Scanning {
         if (!field.clickHexagon(x, y)) gameOver = true;
         if (field.getClosed() == field.getMines()) win = true;
         if (gameOver || win) return;
-        Renovation.update();
+        Controller.update();
     }
 
     void changeFlag(int x, int y) {
         field.changeFlag(x, y);
-        Renovation.update();
+        Controller.update();
     }
 
     void restart() {
         field = new Field(width, height, minesCount);
         gameOver = false;
         win = false;
-        Renovation.init(width, height);
-        Renovation.update();
+        Controller.init(width, height);
+        Controller.update();
     }
 
     void setGameParams(int width, int height, int minesCount) {

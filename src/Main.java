@@ -22,19 +22,24 @@ public class Main extends Application {
         Group group = new Group();
         Scene scene = new Scene(group, 445, 510);
         primaryStage.setScene(scene);
-        primaryStage.setTitle("Supper");
+        primaryStage.setTitle("Minesweeper");
         scene.setFill(Color.LIGHTGRAY);
         VBox vBox = new VBox();
         Pane gameArea = new Pane();
         MenuBar menuBar = new MenuBar();
         Menu game = new Menu("Меню");
         MenuItem menuItem = new MenuItem("Задать размер поля");
+        MenuItem restart = new MenuItem("Restart");
         menuBar.getMenus().add(game);
         menuBar.setMinSize(445, 30);
         game.getItems().add(menuItem);
+        game.getItems().add(restart);
         vBox.getChildren().addAll(menuBar, gameArea);
         group.getChildren().add(vBox);
         Scanning scanning = new Scanning(10, 40, 60);
+        restart.setOnAction(event -> {
+            scanning.restart();
+        });
         game.setOnAction(event -> {
             List<Integer> params = getFieldSize();
             if (params == null) return;
@@ -44,10 +49,10 @@ public class Main extends Application {
             primaryStage.setHeight(68 + 17 * params.get(1));
             menuBar.setMinWidth(70 + params.get(0) * 45);
         });
-        Renovation.play = scanning;
-        Renovation.zone = gameArea;
-        Renovation.init(10, 40);
-        primaryStage.setResizable(false);
+        Controller.play = scanning;
+        Controller.zone = gameArea;
+        Controller.init(10, 40);
+        primaryStage.setResizable(true);
         primaryStage.show();
     }
 

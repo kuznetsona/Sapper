@@ -24,9 +24,7 @@ class Field {
         closedHexagon = width * height;
     }
 
-    Hexagon[][] getHexagon() {
-        return zone;
-    }
+    public Hexagon[][] getHexagon() { return zone; }
 
     private void setMines() {
         int minesRemained = minesCount;
@@ -87,16 +85,9 @@ class Field {
         return true;
     }
 
-    int getClosed() {
-        return closedHexagon;
-    }
+    int getClosed() { return closedHexagon; }
 
-    void changeFlag(int x, int y) {
-        zone[y][x].changeFlag();
-        Renovation.update();
-    }
+    void changeFlag(int x, int y) { zone[y][x].changeFlag(); }
 
-    int getMines() {
-        return minesCount;
-    }
+    int getMines() { return minesCount; }
 }
