@@ -24,9 +24,10 @@ class Scanning {
     }
 
     void clickHexagon(int x, int y) {
+        if (gameOver || win) return;
         if (!field.clickHexagon(x, y)) gameOver = true;
         if (field.getClosed() == field.getMines()) win = true;
-        if (gameOver || win) return;
+
         Controller.update();
     }
 
