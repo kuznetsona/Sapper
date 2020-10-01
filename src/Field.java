@@ -9,6 +9,7 @@ class Field {
     private int minesCount;
     private int closedHexagon;
 
+
     Field(int width, int height, int minesCount){
         this.width = width;
         this.height = height;
@@ -24,9 +25,9 @@ class Field {
         closedHexagon = width * height;
     }
 
-    public Hexagon[][] getHexagon() { return zone; }
+    Hexagon[][] hexagon() { return zone; }        //!!
 
-    private void setMines() {
+     private void setMines() {
         int minesRemained = minesCount;
         while (minesRemained != 0) {
             int x = ThreadLocalRandom.current().nextInt(0, width);
@@ -38,7 +39,7 @@ class Field {
         }
     }
 
-    private void setMinesCount() {
+    private void setMinesCount() {              //!!
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
                 byte count = 0;
@@ -50,12 +51,12 @@ class Field {
         }
     }
 
-    private void addHexagon(List<Hexagon> list, int x, int y) {
+    void addHexagon(List<Hexagon> list, int x, int y) {         //!!
         if (x < 0 || x >= width || y < 0 || y >= height) return;
         list.add(zone[y][x]);
     }
 
-    private List<Hexagon> getHexagon(int x, int y) {
+    List<Hexagon> getHexagon(int x, int y) {        //!!
         LinkedList<Hexagon> list = new LinkedList<>();
         if (y % 2 == 0) {
             addHexagon(list, x, y - 2);
@@ -90,4 +91,6 @@ class Field {
     void changeFlag(int x, int y) { zone[y][x].changeFlag(); }
 
     int getMines() { return minesCount; }
+
+
 }

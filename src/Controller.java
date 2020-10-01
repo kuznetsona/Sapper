@@ -48,7 +48,7 @@ class Controller {
     static void update() {
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
-                Hexagon hexagon = play.getField().getHexagon()[i][j];
+                Hexagon hexagon = play.getField().hexagon()[i][j];
                 if (hexagon.flag()) { square[i][j].setFill(Color.YELLOW);
                 } else { square[i][j].setFill(Color.VIOLET);
                 }
