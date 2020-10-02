@@ -17,7 +17,7 @@ class Hexagon {
 
     void changeFlag() { flag = !flag; }
     boolean flag() { return flag; }
-    //
+
     int getX() { return x; }
     int getY() { return y; }
 

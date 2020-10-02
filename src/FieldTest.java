@@ -24,7 +24,7 @@ class FieldTest {
         Field f = new Field(5,5, 3);
         assertTrue(()->{
             f.changeFlag(2,2);
-            Hexagon h = f.hexagon()[2][2];
+            Hexagon h = f.getZone()[2][2];
             return h.flag();
         });
     }

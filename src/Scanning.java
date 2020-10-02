@@ -15,9 +15,7 @@ class Scanning {
         return field;
     }
 
-    boolean gameOver() {
-        return gameOver;
-    }
+    boolean gameOver() { return gameOver; }
 
     boolean win() {
         return win;
@@ -27,7 +25,6 @@ class Scanning {
         if (gameOver || win) return;
         if (!field.clickHexagon(x, y)) gameOver = true;
         if (field.getClosed() == field.getMines()) win = true;
-
         Controller.update();
     }
 

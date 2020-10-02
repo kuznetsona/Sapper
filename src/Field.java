@@ -25,7 +25,7 @@ class Field {
         closedHexagon = width * height;
     }
 
-    Hexagon[][] hexagon() { return zone; }        //!!
+    Hexagon[][] getZone() { return zone; }
 
      private void setMines() {
         int minesRemained = minesCount;
@@ -39,7 +39,7 @@ class Field {
         }
     }
 
-    private void setMinesCount() {              //!!
+    private void setMinesCount() {
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
                 byte count = 0;
@@ -51,12 +51,12 @@ class Field {
         }
     }
 
-    void addHexagon(List<Hexagon> list, int x, int y) {         //!!
+    void addHexagon(List<Hexagon> list, int x, int y) {
         if (x < 0 || x >= width || y < 0 || y >= height) return;
         list.add(zone[y][x]);
     }
 
-    List<Hexagon> getHexagon(int x, int y) {        //!!
+    List<Hexagon> getHexagon(int x, int y) {
         LinkedList<Hexagon> list = new LinkedList<>();
         if (y % 2 == 0) {
             addHexagon(list, x, y - 2);

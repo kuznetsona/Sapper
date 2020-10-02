@@ -15,15 +15,18 @@ import java.util.Optional;
 public class Main extends Application {
     public static void main(String[] args) {
         launch(args);
-    }
+        }
 
     @Override
     public void start(Stage primaryStage) {
         Group group = new Group();
-        Scene scene = new Scene(group, 445, 510);
+        //контейнер. Цель Group это сгруппировать
+        Scene scene = new Scene(group, 455, 524);
         primaryStage.setScene(scene);
+
         primaryStage.setTitle("Minesweeper");
         scene.setFill(Color.LIGHTGRAY);
+
         VBox vBox = new VBox();
         Pane gameArea = new Pane();
         MenuBar menuBar = new MenuBar();
@@ -46,7 +49,7 @@ public class Main extends Application {
             scanning.setGameParams(params.get(0), params.get(1), params.get(2));
             scanning.restart();
             primaryStage.setWidth(10 + params.get(0) * 45);
-            primaryStage.setHeight(68 + 17 * params.get(1));
+            primaryStage.setHeight(72 + 13 * params.get(1));
             menuBar.setMinWidth(70 + params.get(0) * 45);
         });
         Controller.play = scanning;
@@ -59,7 +62,7 @@ public class Main extends Application {
     private List<Integer> getFieldSize() {
         Dialog<List<Integer>> dialog = new Dialog<>();
         dialog.setTitle("Задать размер поля");
-        dialog.setResizable(true);
+        dialog.setResizable(false);
 
         Label width = new Label("Ширина:");
         Label height = new Label("Высота:");
@@ -76,16 +79,17 @@ public class Main extends Application {
         grid.add(widthTxt, 2, 1);
         grid.add(heightTxt, 2, 2);
         grid.add(minesTxt, 2, 3);
-        //??
+
         dialog.getDialogPane().setContent(grid);
+
         ButtonType buttonOk = new ButtonType("Ok", ButtonBar.ButtonData.OK_DONE);
         dialog.getDialogPane().getButtonTypes().add(buttonOk);
-        //??
+
         dialog.setResultConverter(param -> {
             if (param == buttonOk) {
                 List<Integer> result = new ArrayList<>();
                 if (widthTxt.getText() == null || heightTxt.getText() == null || minesTxt.getText() == null ||
-                        Integer.parseInt(minesTxt.getText()) >
+                        Integer.parseInt(minesTxt.getText()) >=
                                 Integer.parseInt(widthTxt.getText()) * Integer.parseInt(heightTxt.getText()))
                     return null;
                 if (Integer.parseInt(widthTxt.getText()) < 8 || Integer.parseInt(heightTxt.getText()) < 8)
